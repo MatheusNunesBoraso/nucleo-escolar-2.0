@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__github__get_me",
+      "mcp__github__create_repository",
+      "Bash(mkdir:*)",
+      "Bash(yarn install:*)",
+      "Bash(npm install:*)",
+      "Bash(yarn build:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx:*)",
+      "Bash(npm run:*)",
+      "Bash(rm:*)",
+      "Bash(node:*)",
+      "Bash(grep:*)"
+    ]
+  }
+}

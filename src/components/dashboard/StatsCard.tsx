@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Flex, Text, Icon, Stat, StatNumber, StatHelpText, StatArrow } from '@chakra-ui/react';
+import { Box, Flex, Icon, Stat } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 
 interface StatsCardProps {
@@ -8,8 +8,8 @@ interface StatsCardProps {
   value: number | string;
   helpText?: string;
   icon: IconType;
-  colorScheme: string;
-  trend?: 'increase' | 'decrease';
+  colorPalette: string;
+  trend?: 'up' | 'down';
   trendValue?: string;
 }
 
@@ -17,62 +17,43 @@ export default function StatsCard({
   title,
   value,
   helpText,
-  icon,
-  colorScheme,
+  icon: IconComponent,
+  colorPalette,
   trend,
   trendValue,
 }: StatsCardProps) {
-  const bgMap: Record<string, string> = {
-    blue: 'blue.50',
-    green: 'green.50',
-    purple: 'purple.50',
-    orange: 'orange.50',
-    red: 'red.50',
-    teal: 'teal.50',
-  };
-
-  const colorMap: Record<string, string> = {
-    blue: 'blue.500',
-    green: 'green.500',
-    purple: 'purple.500',
-    orange: 'orange.500',
-    red: 'red.500',
-    teal: 'teal.500',
-  };
-
   return (
     <Box
       bg="white"
       borderRadius="xl"
       p={5}
-      boxShadow="sm"
       borderWidth={1}
       borderColor="gray.100"
-      _hover={{ boxShadow: 'md', transform: 'translateY(-2px)' }}
-      transition="all 0.2s"
+      _hover={{ boxShadow: 'md', transform: 'translateY(-1px)' }}
+      transition="all 0.15s"
     >
       <Flex justify="space-between" align="flex-start">
-        <Stat>
-          <Text fontSize="sm" fontWeight="medium" color="gray.500" mb={1}>
+        <Stat.Root>
+          <Stat.Label fontSize="xs" color="gray.500" fontWeight="500">
             {title}
-          </Text>
-          <StatNumber fontSize="3xl" fontWeight="bold" color="gray.800">
+          </Stat.Label>
+          <Stat.ValueText fontSize="3xl" fontWeight="700" color="gray.900" mt={1}>
             {value}
-          </StatNumber>
+          </Stat.ValueText>
           {helpText && (
-            <StatHelpText fontSize="xs" color="gray.400" mb={0}>
-              {trend && <StatArrow type={trend} />}
+            <Stat.HelpText fontSize="xs" color="gray.400" mt={1} mb={0}>
+              {trend === 'up' && <Stat.UpIndicator />}
+              {trend === 'down' && <Stat.DownIndicator />}
               {trendValue && <>{trendValue} </>}
               {helpText}
-            </StatHelpText>
+            </Stat.HelpText>
           )}
-        </Stat>
-        <Box
-          bg={bgMap[colorScheme] || 'blue.50'}
-          p={3}
-          borderRadius="lg"
-        >
-          <Icon as={icon} boxSize={6} color={colorMap[colorScheme] || 'blue.500'} />
+        </Stat.Root>
+
+        <Box bg={`${colorPalette}.50`} p={3} borderRadius="lg" flexShrink={0}>
+          <Icon boxSize={5} color={`${colorPalette}.500`}>
+            <IconComponent />
+          </Icon>
         </Box>
       </Flex>
     </Box>

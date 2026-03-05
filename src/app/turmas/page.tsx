@@ -3,26 +3,20 @@
 import {
   Box,
   Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
   Badge,
   Text,
   HStack,
   Button,
   Input,
   InputGroup,
-  InputLeftElement,
   Icon,
-  Select,
+  NativeSelect,
   Flex,
   VStack,
   Tooltip,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { MdSearch, MdAdd, MdGroup, MdEdit, MdVisibility } from 'react-icons/md';
+import { MdSearch, MdAdd, MdGroup, MdEdit } from 'react-icons/md';
 import AppLayout from '@/components/layout/AppLayout';
 import { turmas } from '@/data/mock';
 
@@ -32,6 +26,17 @@ const turnoColor: Record<string, string> = {
   'Noite': 'purple',
   'Integral': 'blue',
 };
+
+function Tip({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>
+      <Tooltip.Positioner>
+        <Tooltip.Content fontSize="xs">{label}</Tooltip.Content>
+      </Tooltip.Positioner>
+    </Tooltip.Root>
+  );
+}
 
 export default function TurmasPage() {
   const [search, setSearch] = useState('');
@@ -54,12 +59,16 @@ export default function TurmasPage() {
 
   return (
     <AppLayout title="Turmas" subtitle="Gerenciar turmas cadastradas">
-      <Box bg="white" borderRadius="xl" boxShadow="sm" borderWidth={1} borderColor="gray.100" overflow="hidden">
+      <Box bg="white" borderRadius="xl" borderWidth={1} borderColor="gray.100" overflow="hidden">
         <Flex px={5} py={4} borderBottomWidth={1} borderColor="gray.100" gap={3} wrap="wrap" align="center">
-          <InputGroup maxW="280px">
-            <InputLeftElement>
-              <Icon as={MdSearch} color="gray.400" />
-            </InputLeftElement>
+          <InputGroup
+            maxW="280px"
+            startElement={
+              <Icon color="gray.400" boxSize={4}>
+                <MdSearch />
+              </Icon>
+            }
+          >
             <Input
               placeholder="Buscar turma, escola, professor..."
               value={search}
@@ -70,132 +79,113 @@ export default function TurmasPage() {
             />
           </InputGroup>
 
-          <Select
-            maxW="200px"
-            size="md"
-            borderRadius="lg"
-            bg="gray.50"
-            fontSize="sm"
-            value={escolaFilter}
-            onChange={(e) => setEscolaFilter(e.target.value)}
-          >
-            <option value="">Todas as escolas</option>
-            {escolasUnicas.map((e) => (
-              <option key={e.id} value={e.id}>{e.nome}</option>
-            ))}
-          </Select>
+          <NativeSelect.Root maxW="200px">
+            <NativeSelect.Field
+              value={escolaFilter}
+              onChange={(e) => setEscolaFilter(e.target.value)}
+              borderRadius="lg"
+              bg="gray.50"
+              fontSize="sm"
+            >
+              <option value="">Todas as escolas</option>
+              {escolasUnicas.map((e) => (
+                <option key={e.id} value={e.id}>{e.nome}</option>
+              ))}
+            </NativeSelect.Field>
+          </NativeSelect.Root>
 
-          <Select
-            maxW="160px"
-            size="md"
-            borderRadius="lg"
-            bg="gray.50"
-            fontSize="sm"
-            value={turnoFilter}
-            onChange={(e) => setTurnoFilter(e.target.value)}
-          >
-            <option value="">Todos os turnos</option>
-            <option value="Manhã">Manhã</option>
-            <option value="Tarde">Tarde</option>
-            <option value="Noite">Noite</option>
-            <option value="Integral">Integral</option>
-          </Select>
+          <NativeSelect.Root maxW="160px">
+            <NativeSelect.Field
+              value={turnoFilter}
+              onChange={(e) => setTurnoFilter(e.target.value)}
+              borderRadius="lg"
+              bg="gray.50"
+              fontSize="sm"
+            >
+              <option value="">Todos os turnos</option>
+              <option value="Manhã">Manhã</option>
+              <option value="Tarde">Tarde</option>
+              <option value="Noite">Noite</option>
+              <option value="Integral">Integral</option>
+            </NativeSelect.Field>
+          </NativeSelect.Root>
 
           <Box flex={1} />
 
-          <Button leftIcon={<MdAdd />} colorScheme="blue" size="md" borderRadius="lg">
+          <Button colorPalette="blue" size="md" borderRadius="lg">
+            <Icon boxSize={4}><MdAdd /></Icon>
             Nova Turma
           </Button>
         </Flex>
 
-        <Box overflowX="auto">
-          <Table variant="simple" size="sm">
-            <Thead bg="gray.50">
-              <Tr>
-                <Th fontSize="xs" color="gray.500" py={3}>Turma</Th>
-                <Th fontSize="xs" color="gray.500">Escola</Th>
-                <Th fontSize="xs" color="gray.500">Turno</Th>
-                <Th fontSize="xs" color="gray.500">Professor</Th>
-                <Th fontSize="xs" color="gray.500">Ano Letivo</Th>
-                <Th fontSize="xs" color="gray.500" isNumeric>Alunos</Th>
-                <Th fontSize="xs" color="gray.500">Ações</Th>
-              </Tr>
-            </Thead>
-            <Tbody>
+        <Table.ScrollArea>
+          <Table.Root size="sm" variant="line">
+            <Table.Header>
+              <Table.Row bg="gray.50">
+                <Table.ColumnHeader fontSize="xs" color="gray.500" py={3} fontWeight="600">Turma</Table.ColumnHeader>
+                <Table.ColumnHeader fontSize="xs" color="gray.500" fontWeight="600">Escola</Table.ColumnHeader>
+                <Table.ColumnHeader fontSize="xs" color="gray.500" fontWeight="600">Turno</Table.ColumnHeader>
+                <Table.ColumnHeader fontSize="xs" color="gray.500" fontWeight="600">Professor</Table.ColumnHeader>
+                <Table.ColumnHeader fontSize="xs" color="gray.500" fontWeight="600">Ano Letivo</Table.ColumnHeader>
+                <Table.ColumnHeader fontSize="xs" color="gray.500" fontWeight="600" textAlign="end">Alunos</Table.ColumnHeader>
+                <Table.ColumnHeader fontSize="xs" color="gray.500" fontWeight="600">Ações</Table.ColumnHeader>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
               {filtered.map((turma) => (
-                <Tr key={turma.id} _hover={{ bg: 'gray.50' }}>
-                  <Td py={4}>
-                    <HStack spacing={3}>
-                      <Box
-                        bg="blue.50"
-                        p={2}
-                        borderRadius="lg"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Icon as={MdGroup} boxSize={4} color="blue.500" />
+                <Table.Row key={turma.id} _hover={{ bg: 'gray.50' }}>
+                  <Table.Cell py={4}>
+                    <HStack gap={3}>
+                      <Box bg="blue.50" p={2} borderRadius="lg" display="flex" alignItems="center" justifyContent="center">
+                        <Icon boxSize={4} color="blue.500"><MdGroup /></Icon>
                       </Box>
-                      <VStack align="start" spacing={0}>
-                        <Text fontSize="sm" fontWeight="semibold" color="gray.800">
-                          {turma.nome}
-                        </Text>
-                        <Text fontSize="xs" color="gray.500">{turma.serie}</Text>
+                      <VStack align="start" gap={0}>
+                        <Text fontSize="sm" fontWeight="600" color="gray.800">{turma.nome}</Text>
+                        <Text fontSize="xs" color="gray.400">{turma.serie}</Text>
                       </VStack>
                     </HStack>
-                  </Td>
-                  <Td>
-                    <Text fontSize="sm" color="gray.700" maxW="200px" noOfLines={1}>
-                      {turma.escolaNome}
-                    </Text>
-                  </Td>
-                  <Td>
-                    <Badge
-                      colorScheme={turnoColor[turma.turno] || 'gray'}
-                      variant="subtle"
-                      fontSize="xs"
-                    >
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Text fontSize="sm" color="gray.700" lineClamp={1} maxW="200px">{turma.escolaNome}</Text>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Badge colorPalette={turnoColor[turma.turno] || 'gray'} variant="subtle" size="sm">
                       {turma.turno}
                     </Badge>
-                  </Td>
-                  <Td>
+                  </Table.Cell>
+                  <Table.Cell>
                     <Text fontSize="sm" color="gray.700">{turma.professor}</Text>
-                  </Td>
-                  <Td>
-                    <Badge colorScheme="gray" fontSize="xs">{turma.anoLetivo}</Badge>
-                  </Td>
-                  <Td isNumeric>
-                    <Text fontSize="sm" fontWeight="medium">{turma.totalAlunos}</Text>
-                  </Td>
-                  <Td>
-                    <HStack spacing={1}>
-                      <Tooltip label="Visualizar">
-                        <Button size="xs" variant="ghost" colorScheme="blue">
-                          <Icon as={MdVisibility} />
+                  </Table.Cell>
+                  <Table.Cell>
+                    <Badge colorPalette="gray" size="sm">{turma.anoLetivo}</Badge>
+                  </Table.Cell>
+                  <Table.Cell textAlign="end">
+                    <Text fontSize="sm" fontWeight="500">{turma.totalAlunos}</Text>
+                  </Table.Cell>
+                  <Table.Cell>
+                    <HStack gap={1}>
+                      <Tip label="Editar">
+                        <Button size="xs" variant="ghost" colorPalette="blue">
+                          <Icon><MdEdit /></Icon>
                         </Button>
-                      </Tooltip>
-                      <Tooltip label="Editar">
-                        <Button size="xs" variant="ghost" colorScheme="gray">
-                          <Icon as={MdEdit} />
-                        </Button>
-                      </Tooltip>
+                      </Tip>
                     </HStack>
-                  </Td>
-                </Tr>
+                  </Table.Cell>
+                </Table.Row>
               ))}
-            </Tbody>
-          </Table>
+            </Table.Body>
+          </Table.Root>
 
           {filtered.length === 0 && (
             <Box py={12} textAlign="center">
-              <Icon as={MdGroup} boxSize={10} color="gray.300" />
+              <Icon boxSize={10} color="gray.300"><MdGroup /></Icon>
               <Text color="gray.400" mt={2}>Nenhuma turma encontrada</Text>
             </Box>
           )}
-        </Box>
+        </Table.ScrollArea>
 
-        <Flex px={5} py={3} borderTopWidth={1} borderColor="gray.100" align="center" justify="space-between">
-          <Text fontSize="xs" color="gray.500">
+        <Flex px={5} py={3} borderTopWidth={1} borderColor="gray.100" align="center">
+          <Text fontSize="xs" color="gray.400">
             Exibindo {filtered.length} de {turmas.length} turmas
           </Text>
         </Flex>

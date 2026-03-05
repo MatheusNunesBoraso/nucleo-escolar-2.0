@@ -1,15 +1,6 @@
 'use client';
 
-import {
-  Box,
-  Flex,
-  Text,
-  VStack,
-  Icon,
-  Link,
-  Divider,
-  Badge,
-} from '@chakra-ui/react';
+import { Box, Flex, Text, VStack, Icon, Badge, Separator } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MdDashboard, MdSchool, MdGroup, MdPerson, MdMenuBook } from 'react-icons/md';
@@ -26,84 +17,90 @@ export default function Sidebar() {
 
   return (
     <Box
-      w="260px"
+      w="256px"
       minH="100vh"
-      bg="brand.700"
+      bg="#111827"
       color="white"
       display={{ base: 'none', md: 'flex' }}
       flexDirection="column"
-      py={6}
-      px={4}
       position="fixed"
       left={0}
       top={0}
       zIndex={100}
-      boxShadow="2xl"
     >
       {/* Logo */}
-      <Flex align="center" gap={3} px={2} mb={8}>
-        <Box
-          bg="brand.400"
+      <Flex align="center" gap={3} px={5} py={5} borderBottomWidth={1} borderColor="whiteAlpha.100">
+        <Flex
+          align="center"
+          justify="center"
+          w="36px"
+          h="36px"
+          bg="blue.600"
           borderRadius="lg"
-          p={2}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
+          flexShrink={0}
         >
-          <Icon as={MdMenuBook} boxSize={6} color="white" />
-        </Box>
+          <Icon color="white" boxSize={5}>
+            <MdMenuBook />
+          </Icon>
+        </Flex>
         <Box>
-          <Text fontWeight="bold" fontSize="md" lineHeight={1.2}>
+          <Text fontWeight="700" fontSize="sm" letterSpacing="tight" lineHeight={1.2}>
             Núcleo Escolar
           </Text>
-          <Badge colorScheme="blue" fontSize="xs" variant="solid" bg="brand.400">
+          <Badge colorPalette="blue" size="sm" variant="solid" mt="1px">
             v2.0
           </Badge>
         </Box>
       </Flex>
 
-      <Divider borderColor="brand.600" mb={4} />
+      {/* Nav */}
+      <VStack align="stretch" gap={1} px={3} py={4} flex={1}>
+        <Text
+          fontSize="10px"
+          fontWeight="600"
+          color="whiteAlpha.400"
+          textTransform="uppercase"
+          letterSpacing="widest"
+          px={3}
+          mb={1}
+        >
+          Menu
+        </Text>
 
-      <Text fontSize="xs" fontWeight="semibold" color="brand.300" px={2} mb={3} textTransform="uppercase" letterSpacing="wider">
-        Menu Principal
-      </Text>
-
-      <VStack align="stretch" spacing={1} flex={1}>
         {navItems.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
           return (
-            <Link
-              key={item.href}
-              as={NextLink}
-              href={item.href}
-              _hover={{ textDecoration: 'none' }}
-            >
+            <NextLink key={item.href} href={item.href} style={{ textDecoration: 'none' }}>
               <Flex
                 align="center"
                 gap={3}
                 px={3}
                 py={2.5}
                 borderRadius="lg"
-                bg={isActive ? 'brand.500' : 'transparent'}
-                color={isActive ? 'white' : 'brand.200'}
-                _hover={{ bg: 'brand.600', color: 'white' }}
+                bg={isActive ? 'blue.600' : 'transparent'}
+                color={isActive ? 'white' : 'whiteAlpha.600'}
+                _hover={{
+                  bg: isActive ? 'blue.600' : 'whiteAlpha.100',
+                  color: 'white',
+                }}
                 transition="all 0.15s"
                 cursor="pointer"
               >
-                <Icon as={item.icon} boxSize={5} />
-                <Text fontSize="sm" fontWeight={isActive ? 'semibold' : 'medium'}>
+                <Icon boxSize={4}>
+                  <item.icon />
+                </Icon>
+                <Text fontSize="sm" fontWeight={isActive ? '600' : '400'}>
                   {item.label}
                 </Text>
               </Flex>
-            </Link>
+            </NextLink>
           );
         })}
       </VStack>
 
-      <Divider borderColor="brand.600" mb={4} />
-
-      <Box px={2}>
-        <Text fontSize="xs" color="brand.300" textAlign="center">
+      {/* Footer */}
+      <Box px={5} py={4} borderTopWidth={1} borderColor="whiteAlpha.100">
+        <Text fontSize="11px" color="whiteAlpha.300" textAlign="center">
           © 2026 Núcleo Escolar 2.0
         </Text>
       </Box>

@@ -14,7 +14,7 @@ export default function AppLayout({ children, title, subtitle }: AppLayoutProps)
   return (
     <Flex minH="100vh" bg="gray.50">
       <Sidebar />
-      <Box flex={1} ml={{ base: 0, md: '260px' }} display="flex" flexDirection="column">
+      <Box flex={1} ml={{ base: 0, md: '256px' }} display="flex" flexDirection="column">
         <Header title={title} subtitle={subtitle} />
         <Box flex={1} p={6}>
           {children}

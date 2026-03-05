@@ -1,17 +1,37 @@
-export type TipoEscola = 'Particular' | 'Pública';
-
-export type StatusEscola = 'Ativa' | 'Inativa';
+export type EscolaType = 'public' | 'private';
+export type EscolaStatus = 'active' | 'inactive';
+export type EducationStage = 'infantil' | 'fundamental1' | 'fundamental2' | 'medio' | 'eja';
+export type Shift = 'manha' | 'tarde' | 'noite' | 'integral';
+export type AcademicYearModel = 'year' | 'semester' | 'trimester' | 'bimester';
 
 export interface Escola {
   id: string;
-  nome: string;
-  tipo: TipoEscola;
-  status: StatusEscola;
-  cidade: string;
-  estado: string;
-  diretor: string;
-  telefone: string;
-  email: string;
+  // 1. Identificação
+  name: string;
+  type: EscolaType;
+  status: EscolaStatus;
+  // 2. Endereço
+  cep: string;
+  state: string;
+  city: string;
+  district: string;
+  street: string;
+  number: string;
+  complement?: string;
+  // 3. Contato
+  phone?: string;
+  email?: string;
+  // 4. Dados Institucionais
+  schoolCodeInep?: string;
+  cnpj?: string;
+  legalName?: string;
+  operatingName?: string;
+  // 5. Estrutura Educacional
+  educationStages: EducationStage[];
+  shiftModel: Shift[];
+  academicYearModel: AcademicYearModel;
+  maxStudentsPerClassDefault?: number;
+  // Meta
   totalTurmas: number;
   totalAlunos: number;
   createdAt: string;
