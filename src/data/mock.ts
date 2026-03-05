@@ -1,0 +1,149 @@
+import { Escola, Turma, Aluno, DashboardStats } from '@/types';
+
+export const escolas: Escola[] = [
+  {
+    id: 'esc-001',
+    nome: 'Colégio São Francisco de Assis',
+    tipo: 'Particular',
+    status: 'Ativa',
+    cidade: 'São Paulo',
+    estado: 'SP',
+    diretor: 'Prof. Ricardo Almeida',
+    telefone: '(11) 3456-7890',
+    email: 'contato@saofrancisco.edu.br',
+    totalTurmas: 6,
+    totalAlunos: 145,
+    createdAt: '2023-02-15',
+  },
+  {
+    id: 'esc-002',
+    nome: 'E.E. Prof. Anísio Teixeira',
+    tipo: 'Pública',
+    status: 'Ativa',
+    cidade: 'Campinas',
+    estado: 'SP',
+    diretor: 'Profa. Márcia Souza',
+    telefone: '(19) 3322-4455',
+    email: 'ee.anisioteixeira@educacao.sp.gov.br',
+    totalTurmas: 8,
+    totalAlunos: 210,
+    createdAt: '2022-07-20',
+  },
+  {
+    id: 'esc-003',
+    nome: 'Instituto Educacional Horizonte',
+    tipo: 'Particular',
+    status: 'Ativa',
+    cidade: 'Rio de Janeiro',
+    estado: 'RJ',
+    diretor: 'Prof. Fernando Costa',
+    telefone: '(21) 2244-6688',
+    email: 'admin@horizonte.edu.br',
+    totalTurmas: 5,
+    totalAlunos: 98,
+    createdAt: '2023-05-10',
+  },
+  {
+    id: 'esc-004',
+    nome: 'EMEF Monteiro Lobato',
+    tipo: 'Pública',
+    status: 'Ativa',
+    cidade: 'Belo Horizonte',
+    estado: 'MG',
+    diretor: 'Profa. Juliana Ferreira',
+    telefone: '(31) 3555-7799',
+    email: 'emef.monteirolobato@sme.bh.gov.br',
+    totalTurmas: 7,
+    totalAlunos: 189,
+    createdAt: '2022-03-01',
+  },
+  {
+    id: 'esc-005',
+    nome: 'Colégio Excelência',
+    tipo: 'Particular',
+    status: 'Inativa',
+    cidade: 'Curitiba',
+    estado: 'PR',
+    diretor: 'Prof. André Moreira',
+    telefone: '(41) 4002-8922',
+    email: 'secretaria@excelencia.edu.br',
+    totalTurmas: 4,
+    totalAlunos: 72,
+    createdAt: '2021-08-12',
+  },
+];
+
+export const turmas: Turma[] = [
+  // Colégio São Francisco
+  { id: 'tur-001', nome: '1º Ano A', serie: '1º Ano', turno: 'Manhã', anoLetivo: 2026, escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', professor: 'Profa. Ana Lima', totalAlunos: 28, createdAt: '2026-01-20' },
+  { id: 'tur-002', nome: '2º Ano A', serie: '2º Ano', turno: 'Manhã', anoLetivo: 2026, escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', professor: 'Prof. Bruno Rocha', totalAlunos: 25, createdAt: '2026-01-20' },
+  { id: 'tur-003', nome: '3º Ano A', serie: '3º Ano', turno: 'Tarde', anoLetivo: 2026, escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', professor: 'Profa. Carla Mendes', totalAlunos: 22, createdAt: '2026-01-20' },
+  { id: 'tur-004', nome: '4º Ano A', serie: '4º Ano', turno: 'Tarde', anoLetivo: 2026, escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', professor: 'Prof. Diego Pinto', totalAlunos: 24, createdAt: '2026-01-20' },
+  { id: 'tur-005', nome: '5º Ano A', serie: '5º Ano', turno: 'Manhã', anoLetivo: 2026, escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', professor: 'Profa. Elaine Castro', totalAlunos: 23, createdAt: '2026-01-20' },
+  { id: 'tur-006', nome: '6º Ano A', serie: '6º Ano', turno: 'Manhã', anoLetivo: 2026, escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', professor: 'Prof. Fábio Nunes', totalAlunos: 23, createdAt: '2026-01-20' },
+
+  // EE Anísio Teixeira
+  { id: 'tur-007', nome: '6º Ano A', serie: '6º Ano', turno: 'Manhã', anoLetivo: 2026, escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', professor: 'Profa. Gisele Barros', totalAlunos: 30, createdAt: '2026-01-20' },
+  { id: 'tur-008', nome: '6º Ano B', serie: '6º Ano', turno: 'Tarde', anoLetivo: 2026, escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', professor: 'Prof. Henrique Dias', totalAlunos: 28, createdAt: '2026-01-20' },
+  { id: 'tur-009', nome: '7º Ano A', serie: '7º Ano', turno: 'Manhã', anoLetivo: 2026, escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', professor: 'Profa. Isabela Ramos', totalAlunos: 27, createdAt: '2026-01-20' },
+  { id: 'tur-010', nome: '8º Ano A', serie: '8º Ano', turno: 'Tarde', anoLetivo: 2026, escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', professor: 'Prof. João Oliveira', totalAlunos: 29, createdAt: '2026-01-20' },
+
+  // Instituto Horizonte
+  { id: 'tur-011', nome: '1º Ano A', serie: '1º Ano', turno: 'Integral', anoLetivo: 2026, escolaId: 'esc-003', escolaNome: 'Instituto Educacional Horizonte', professor: 'Profa. Karen Silva', totalAlunos: 20, createdAt: '2026-01-20' },
+  { id: 'tur-012', nome: '2º Ano A', serie: '2º Ano', turno: 'Integral', anoLetivo: 2026, escolaId: 'esc-003', escolaNome: 'Instituto Educacional Horizonte', professor: 'Prof. Lucas Santos', totalAlunos: 19, createdAt: '2026-01-20' },
+
+  // EMEF Monteiro Lobato
+  { id: 'tur-013', nome: '3º Ano A', serie: '3º Ano', turno: 'Manhã', anoLetivo: 2026, escolaId: 'esc-004', escolaNome: 'EMEF Monteiro Lobato', professor: 'Profa. Marina Torres', totalAlunos: 32, createdAt: '2026-01-20' },
+  { id: 'tur-014', nome: '4º Ano A', serie: '4º Ano', turno: 'Tarde', anoLetivo: 2026, escolaId: 'esc-004', escolaNome: 'EMEF Monteiro Lobato', professor: 'Prof. Nelson Faria', totalAlunos: 31, createdAt: '2026-01-20' },
+  { id: 'tur-015', nome: '5º Ano A', serie: '5º Ano', turno: 'Manhã', anoLetivo: 2026, escolaId: 'esc-004', escolaNome: 'EMEF Monteiro Lobato', professor: 'Profa. Olívia Campos', totalAlunos: 30, createdAt: '2026-01-20' },
+];
+
+export const alunos: Aluno[] = [
+  // Turma 1º Ano A - São Francisco
+  { id: 'alu-001', nome: 'Alice Fernandes', matricula: '2026001', dataNascimento: '2019-03-12', turmaId: 'tur-001', turmaNome: '1º Ano A', escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', responsavel: 'Carlos Fernandes', telefoneResponsavel: '(11) 99123-4567', status: 'Ativo', createdAt: '2026-01-25' },
+  { id: 'alu-002', nome: 'Bruno Alves', matricula: '2026002', dataNascimento: '2019-07-22', turmaId: 'tur-001', turmaNome: '1º Ano A', escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', responsavel: 'Patrícia Alves', telefoneResponsavel: '(11) 98765-4321', status: 'Ativo', createdAt: '2026-01-25' },
+  { id: 'alu-003', nome: 'Clara Souza', matricula: '2026003', dataNascimento: '2019-11-05', turmaId: 'tur-001', turmaNome: '1º Ano A', escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', responsavel: 'Marcos Souza', telefoneResponsavel: '(11) 97654-3210', status: 'Ativo', createdAt: '2026-01-25' },
+
+  // Turma 2º Ano A - São Francisco
+  { id: 'alu-004', nome: 'Daniel Costa', matricula: '2026004', dataNascimento: '2018-02-18', turmaId: 'tur-002', turmaNome: '2º Ano A', escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', responsavel: 'Sandra Costa', telefoneResponsavel: '(11) 96543-2109', status: 'Ativo', createdAt: '2026-01-25' },
+  { id: 'alu-005', nome: 'Eduarda Lima', matricula: '2026005', dataNascimento: '2018-08-30', turmaId: 'tur-002', turmaNome: '2º Ano A', escolaId: 'esc-001', escolaNome: 'Colégio São Francisco de Assis', responsavel: 'Paulo Lima', telefoneResponsavel: '(11) 95432-1098', status: 'Ativo', createdAt: '2026-01-25' },
+
+  // Turma 6º Ano A - E.E. Anísio Teixeira
+  { id: 'alu-006', nome: 'Felipe Martins', matricula: '2026006', dataNascimento: '2013-04-15', turmaId: 'tur-007', turmaNome: '6º Ano A', escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', responsavel: 'Rosa Martins', telefoneResponsavel: '(19) 99876-5432', status: 'Ativo', createdAt: '2026-01-22' },
+  { id: 'alu-007', nome: 'Gabriela Nunes', matricula: '2026007', dataNascimento: '2013-09-20', turmaId: 'tur-007', turmaNome: '6º Ano A', escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', responsavel: 'João Nunes', telefoneResponsavel: '(19) 98765-4320', status: 'Ativo', createdAt: '2026-01-22' },
+  { id: 'alu-008', nome: 'Henrique Pereira', matricula: '2026008', dataNascimento: '2013-12-01', turmaId: 'tur-007', turmaNome: '6º Ano A', escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', responsavel: 'Lúcia Pereira', telefoneResponsavel: '(19) 97654-3209', status: 'Transferido', createdAt: '2026-01-22' },
+
+  // Turma 7º Ano A - E.E. Anísio Teixeira
+  { id: 'alu-009', nome: 'Isabela Rocha', matricula: '2026009', dataNascimento: '2012-06-14', turmaId: 'tur-009', turmaNome: '7º Ano A', escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', responsavel: 'Sérgio Rocha', telefoneResponsavel: '(19) 96543-2108', status: 'Ativo', createdAt: '2026-01-22' },
+  { id: 'alu-010', nome: 'João Pedro Melo', matricula: '2026010', dataNascimento: '2012-10-27', turmaId: 'tur-009', turmaNome: '7º Ano A', escolaId: 'esc-002', escolaNome: 'E.E. Prof. Anísio Teixeira', responsavel: 'Cláudia Melo', telefoneResponsavel: '(19) 95432-1097', status: 'Ativo', createdAt: '2026-01-22' },
+
+  // Instituto Horizonte
+  { id: 'alu-011', nome: 'Karina Vieira', matricula: '2026011', dataNascimento: '2019-01-08', turmaId: 'tur-011', turmaNome: '1º Ano A', escolaId: 'esc-003', escolaNome: 'Instituto Educacional Horizonte', responsavel: 'Roberto Vieira', telefoneResponsavel: '(21) 99012-3456', status: 'Ativo', createdAt: '2026-01-23' },
+  { id: 'alu-012', nome: 'Leonardo Carvalho', matricula: '2026012', dataNascimento: '2019-05-19', turmaId: 'tur-011', turmaNome: '1º Ano A', escolaId: 'esc-003', escolaNome: 'Instituto Educacional Horizonte', responsavel: 'Fernanda Carvalho', telefoneResponsavel: '(21) 98901-2345', status: 'Ativo', createdAt: '2026-01-23' },
+
+  // EMEF Monteiro Lobato
+  { id: 'alu-013', nome: 'Manuela Gomes', matricula: '2026013', dataNascimento: '2016-07-03', turmaId: 'tur-013', turmaNome: '3º Ano A', escolaId: 'esc-004', escolaNome: 'EMEF Monteiro Lobato', responsavel: 'Antônio Gomes', telefoneResponsavel: '(31) 99321-0987', status: 'Ativo', createdAt: '2026-01-21' },
+  { id: 'alu-014', nome: 'Nicolas Teixeira', matricula: '2026014', dataNascimento: '2016-11-25', turmaId: 'tur-013', turmaNome: '3º Ano A', escolaId: 'esc-004', escolaNome: 'EMEF Monteiro Lobato', responsavel: 'Maria Teixeira', telefoneResponsavel: '(31) 98210-9876', status: 'Ativo', createdAt: '2026-01-21' },
+  { id: 'alu-015', nome: 'Olivia Barros', matricula: '2026015', dataNascimento: '2017-02-14', turmaId: 'tur-014', turmaNome: '4º Ano A', escolaId: 'esc-004', escolaNome: 'EMEF Monteiro Lobato', responsavel: 'Eduardo Barros', telefoneResponsavel: '(31) 97109-8765', status: 'Inativo', createdAt: '2026-01-21' },
+];
+
+export const dashboardStats: DashboardStats = {
+  totalEscolas: escolas.length,
+  totalTurmas: turmas.length,
+  totalAlunos: alunos.length,
+  escolasParticulares: escolas.filter((e) => e.tipo === 'Particular').length,
+  escolasPublicas: escolas.filter((e) => e.tipo === 'Pública').length,
+  alunosAtivos: alunos.filter((a) => a.status === 'Ativo').length,
+};
+
+export function getTurmasByEscola(escolaId: string): Turma[] {
+  return turmas.filter((t) => t.escolaId === escolaId);
+}
+
+export function getAlunosByTurma(turmaId: string): Aluno[] {
+  return alunos.filter((a) => a.turmaId === turmaId);
+}
+
+export function getAlunosByEscola(escolaId: string): Aluno[] {
+  return alunos.filter((a) => a.escolaId === escolaId);
+}
