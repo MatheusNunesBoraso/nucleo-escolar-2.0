@@ -1,7 +1,5 @@
 'use client';
 
-import { CacheProvider } from '@emotion/react';
-import { useEmotionCache } from '@chakra-ui/react';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
